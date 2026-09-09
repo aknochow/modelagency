@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "modelagency"
+version = "0.1.0"
+description = "Deterministic, provenance-first model and agent benchmark index"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+authors = [{name = "Adam Knoch"}]
+
+[project.scripts]
+modelagency = "modelagency.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["modelagency*"]

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>modelagency</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">Deterministic benchmark index</p>
+      <h1>modelagency</h1>
+      <p>Compare model and agent evidence by work type, cost, and provenance.</p>
+    </header>
+
+    <section class="notice">
+      <strong>Source policy:</strong> every row links to its evidence and attribution.
+      Metrics from sources without redistribution permission remain link-only.
+    </section>
+
+    <section>
+      <h2>Suggested agent</h2>
+      <p class="muted">Recommendations are generated from the visible evidence only. Cost-based suggestions appear when task-cost data is available.</p>
+      <div id="suggestions" class="cards"></div>
+    </section>
+
+    <section class="controls" aria-label="Filters">
+      <label>Search <input id="search" type="search" placeholder="model, provider, benchmark"></label>
+      <label>Category <select id="category"><option value="">All categories</option></select></label>
+      <label><input id="priced-only" type="checkbox"> priced only</label>
+      <fieldset><legend>Models</legend><div id="model-filters"></div></fieldset>
+      <fieldset><legend>Agents</legend><div id="agent-filters"></div></fieldset>
+    </section>
+
+    <section>
+      <p id="status">Loading…</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th><button data-sort="model_name">Model</button></th>
+            <th><button data-sort="provider">Provider</button></th>
+            <th><button data-sort="category">Category</button></th>
+            <th><button data-sort="benchmark_id">Benchmark</button></th>
+            <th><button data-sort="score">Score</button></th>
+            <th><button data-sort="cost_per_task_usd">Cost/task</button></th>
+            <th>Token price</th>
+            <th>Evidence / attribution</th>
+          </tr></thead>
+          <tbody id="results"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer><a href="sources.html">Sources and attribution</a></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

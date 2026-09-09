@@ -1,0 +1,19 @@
+{
+  "schema_version": "1",
+  "benchmarks": [
+    {"id": "swePro", "category": "coding", "publish": true},
+    {"id": "terminalBench21", "category": "terminal", "publish": true},
+    {"id": "terminalBench4", "category": "terminal", "publish": true},
+    {"id": "osWorldVerified", "category": "computer_use", "publish": true},
+    {"id": "osWorld2", "category": "computer_use", "publish": true},
+    {"id": "officeQa", "category": "office", "publish": true},
+    {"id": "officeQaPro", "category": "office", "publish": true},
+    {"id": "browseComp", "category": "administrative", "publish": true},
+    {"id": "wildBench", "category": "writing", "publish": true},
+    {"id": "ifeval", "category": "writing", "publish": true},
+    {"id": "mmmuPro", "category": "visual_reasoning", "publish": true},
+    {"id": "ocrBenchV2", "category": "visual_reasoning", "publish": true},
+    {"id": "designArenaWebsite", "category": "graphics", "publish": true},
+    {"id": "deepSwe", "category": "coding", "publish": false, "reason": "link-only until Datacurve confirms redistribution terms"}
+  ]
+}

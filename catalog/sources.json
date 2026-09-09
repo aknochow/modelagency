@@ -1,0 +1,58 @@
+{
+  "schema_version": "1",
+  "sources": [
+    {
+      "id": "benchlm",
+      "name": "BenchLM",
+      "kind": "aggregator",
+      "canonical_url": "https://benchlm.ai/llm-agent-benchmarks",
+      "data_url": "https://benchlm.ai/data/models.json",
+      "license_url": "https://benchlm.ai/data",
+      "license": "MIT",
+      "source_status": "approved",
+      "redistribution": "allowed_with_attribution",
+      "attribution": "Source: BenchLM.ai (https://benchlm.ai), retrieved {retrieved_date}.",
+      "original_source_attribution_required": true,
+      "notes": "Underlying benchmark results remain owned by their original publishers; preserve evidence URLs and attribution."
+    },
+    {
+      "id": "deepswe",
+      "name": "DeepSWE",
+      "kind": "benchmark",
+      "canonical_url": "https://deepswe.datacurve.ai/",
+      "data_url": null,
+      "license_url": "https://deepswe.datacurve.ai/run",
+      "license": null,
+      "source_status": "permission_required",
+      "redistribution": "link_only_until_confirmed",
+      "attribution": "DeepSWE by Datacurve: https://deepswe.datacurve.ai/.",
+      "notes": "Do not mirror leaderboard rows or benchmark data until Datacurve confirms redistribution terms."
+    },
+    {
+      "id": "artificialanalysis_models",
+      "name": "Artificial Analysis Models",
+      "kind": "aggregator",
+      "canonical_url": "https://artificialanalysis.ai/models",
+      "data_url": null,
+      "license_url": "https://artificialanalysiscdn.com/legal/ProDataPlatformTerms.pdf",
+      "license": "restricted_terms",
+      "source_status": "reference_only",
+      "redistribution": "prohibited_without_written_consent",
+      "attribution": "Source: Artificial Analysis (https://artificialanalysis.ai).",
+      "notes": "Current terms prohibit raw-data redistribution and substantially similar public competitive products without prior written consent."
+    },
+    {
+      "id": "artificialanalysis_coding_agents",
+      "name": "Artificial Analysis Coding Agents",
+      "kind": "aggregator",
+      "canonical_url": "https://artificialanalysis.ai/agents/coding-agents",
+      "data_url": null,
+      "license_url": "https://artificialanalysiscdn.com/legal/ProDataPlatformTerms.pdf",
+      "license": "restricted_terms",
+      "source_status": "reference_only",
+      "redistribution": "prohibited_without_written_consent",
+      "attribution": "Source: Artificial Analysis (https://artificialanalysis.ai).",
+      "notes": "Reference point only until written permission is obtained."
+    }
+  ]
+}
