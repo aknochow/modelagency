@@ -23,19 +23,21 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
       - run: python -m unittest discover -s tests -v
       - run: python -m modelagency.cli validate
       - run: python -m modelagency.cli build
       - run: python -m modelagency.cli report
+      - name: Run dashboard budget checks
+        run: node -e "import('./tests/test_dashboard_budget.mjs').then(tests => console.log(tests.runBudgetTests())).catch(error => { console.error(error); process.exit(1); })"
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: site
       - name: Deploy to GitHub Pages
         id: deployment
         if: ${{ vars.ENABLE_PAGES == 'true' }}
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

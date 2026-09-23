@@ -164,12 +164,13 @@ export function runBudgetTests() {
   check("recommendations disclose the actual arithmetic and fit label", () => {
     const page = dashboard();
     assert.match(page.element("#suggestions").innerHTML, /Best Daily Driver Fit/);
-    assert.match(page.element("#suggestions").innerHTML, /20M input × \$5\/1M \+ 5M output × \$30\/1M = \$250\/month/);
+    assert.match(page.element("#suggestions").innerHTML, /href="#cost-calculation-heading"/);
+    assert.doesNotMatch(page.element("#suggestions").innerHTML, /<details class="cost-calculation">/);
     const sol = page.evaluate("monthlyCalculation(state.summaries.find(row => row.model_id === 'gpt-5-6-sol'))");
+    assert.match(sol, /View cost calculation/);
     assert.match(sol, /20M input × \$5\/1M \+ 5M output × \$30\/1M = \$250\/month/);
-    assert.match(sol, /not a subscription price or measured task cost/);
-    assert.match(sol, /https:\/\/benchlm.ai\/data\/pricing.json/);
-    assert.match(sol, /pricing\.html#pricing-openai/);
+    assert.match(page.element("#pricing-section").innerHTML, /Cost calculation/);
+    assert.match(page.element("#pricing-section").innerHTML, /20M input and 5M output tokens per month/);
     assert.match(page.element("#pricing-section").innerHTML, /View full token pricing list/);
     assert.match(page.element("#pricing-section").innerHTML, /pricing\.html#pricing-overview/);
     assert.match(page.element("#pricing-section").innerHTML, /composer-2-5/);
