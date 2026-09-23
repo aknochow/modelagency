@@ -1,0 +1,32 @@
+{
+  "fixture_kind": "synthetic normalized contract; not published BenchLM model results",
+  "schema_version": "1",
+  "source_id": "benchlm",
+  "source_url": "https://benchlm.ai/data/leaderboard.json",
+  "source_license_url": "https://benchlm.ai/data",
+  "source_generated_at": "2026-09-09T10:00:00Z",
+  "retrieved_date": "2026-09-10",
+  "attribution": "Benchmark data and leaderboard rankings from BenchLM.ai, retrieved 2026-09-10. BenchLM dataset licensed under MIT. Underlying benchmark results remain attributed to their original publishers.",
+  "records": [
+    {
+      "model_id": "example-model",
+      "configuration_id": "example-model",
+      "model_name": "Example Model",
+      "profile_url": "https://benchlm.ai/models/example-model",
+      "source_rank": 47,
+      "source_score": 82.125,
+      "lane": "provisional",
+      "evidence_status": "reported"
+    },
+    {
+      "model_id": "example-model",
+      "configuration_id": "example-model",
+      "model_name": "Example Model",
+      "profile_url": "https://benchlm.ai/models/example-model",
+      "source_rank": 12,
+      "source_score": 75.875,
+      "lane": "verified",
+      "evidence_status": "verified"
+    }
+  ]
+}

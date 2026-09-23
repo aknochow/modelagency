@@ -3,7 +3,7 @@
   "benchmarks": [
     {"id": "swePro", "category": "coding", "publish": true},
     {"id": "terminalBench21", "category": "terminal", "publish": true},
-    {"id": "terminalBench4", "category": "terminal", "publish": true},
+    {"id": "terminalBench4", "category": "terminal", "publish": true, "source_id": "terminal_bench", "version": "4.0.0", "task_count": 66},
     {"id": "osWorldVerified", "category": "computer_use", "publish": true},
     {"id": "osWorld2", "category": "computer_use", "publish": true},
     {"id": "officeQa", "category": "office", "publish": true},

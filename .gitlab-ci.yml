@@ -1,0 +1,15 @@
+stages:
+  - deploy
+
+create-pages:
+  stage: deploy
+  script:
+    - test -s site/index.html
+    - mkdir -p public
+    - cp -a site/. public/
+  pages: true
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'

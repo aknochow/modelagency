@@ -9,26 +9,41 @@ the BenchLM dataset attribution.
 from __future__ import annotations
 
 import json
-from datetime import date
+import ssl
+from datetime import UTC, datetime
+from http.client import HTTPSConnection
 from pathlib import Path
 from typing import Any
-from urllib.request import Request, urlopen
 
+from ..model_policy import is_model_in_scope
+from ..canonical import attribution as benchlm_attribution
 from ..schema import Result
-
 
 MODELS_URL = "https://benchlm.ai/data/models.json"
 BENCHMARKS_URL = "https://benchlm.ai/data/benchmarks.json"
 PRICING_URL = "https://benchlm.ai/data/pricing.json"
 MAX_RESPONSE_BYTES = 25_000_000
+BENCHLM_HOST = "benchlm.ai"
+BENCHLM_PATHS = {
+    MODELS_URL: "/data/models.json",
+    BENCHMARKS_URL: "/data/benchmarks.json",
+    PRICING_URL: "/data/pricing.json",
+}
 
 
 def fetch_json(url: str) -> dict[str, Any]:
-    if url not in {MODELS_URL, BENCHMARKS_URL, PRICING_URL}:
+    path = BENCHLM_PATHS.get(url)
+    if path is None:
         raise ValueError(f"URL is not in the BenchLM allowlist: {url}")
-    request = Request(url, headers={"User-Agent": "modelagency/0.1"})
-    with urlopen(request, timeout=30) as response:  # noqa: S310 - URL is allowlisted above.
+    connection = HTTPSConnection(BENCHLM_HOST, timeout=30, context=ssl.create_default_context())
+    try:
+        connection.request("GET", path, headers={"User-Agent": "modelagency/0.1"})
+        response = connection.getresponse()
+        if response.status < 200 or response.status >= 300:
+            raise ValueError(f"BenchLM returned HTTP {response.status} for {path}")
         body = response.read(MAX_RESPONSE_BYTES + 1)
+    finally:
+        connection.close()
     if len(body) > MAX_RESPONSE_BYTES:
         raise ValueError(f"BenchLM response exceeded {MAX_RESPONSE_BYTES} bytes")
     return json.loads(body)
@@ -41,12 +56,16 @@ def load_catalog(root: Path) -> dict[str, dict[str, Any]]:
 
 def tracked_model(item: dict[str, Any]) -> bool:
     slug = str(item.get("slug", "")).lower()
+    model_name = str(item.get("model", ""))
     return (
+        is_model_in_scope(model_name)
+        and (
         "claude" in slug
-        or slug.startswith(("gpt-5-6", "gpt-5.6"))
+        or slug.startswith(("gpt-5-6", "gpt-5.6", "gpt-6-astra", "gpt-6.astra"))
         or "grok-4-6" in slug
         or "grok-4.6" in slug
         or any(token in slug for token in ("gemini-3-6", "gemini-3.6", "gemini-3-7", "gemini-3.7", "gemini-3-8", "gemini-3.8"))
+        )
     )
 
 
@@ -77,7 +96,7 @@ def normalize_payload(
 ) -> list[Result]:
     metadata_by_key = {item["benchmarkKey"]: item for item in benchmarks_payload.get("items", [])}
     pricing_by_key = {item["canonicalModelKey"]: item for item in (pricing_payload or {}).get("items", [])}
-    retrieved = retrieved_date or str(models_payload.get("generatedAt", date.today().isoformat()))[:10]
+    retrieved = retrieved_date or str(models_payload.get("generatedAt", datetime.now(UTC).date().isoformat()))[:10]
     results: list[Result] = []
     for model in models_payload.get("items", []):
         if not tracked_model(model):
@@ -94,7 +113,7 @@ def normalize_payload(
             if not evidence_url or not original_url:
                 continue
             attribution = (
-                f"Source: BenchLM.ai (https://benchlm.ai), retrieved {retrieved}; "
+                f"{benchlm_attribution(retrieved)} "
                 f"original benchmark: {metadata.get('authors', 'unspecified')} ({original_url})."
             )
             pricing = pricing_by_key.get(model["canonicalModelKey"], {})
@@ -122,9 +141,18 @@ def normalize_payload(
                 evaluation_type="reported",
                 derivation_type="copied_fact",
                 attribution=attribution,
+                source_generated_at=models_payload.get("generatedAt"),
+                source_model_url=model.get("url"),
             ))
     return sorted(results, key=lambda result: (result.category, result.model_name, result.benchmark_id))
 
 
 def fetch_results(root: Path) -> list[Result]:
-    return normalize_payload(fetch_json(MODELS_URL), fetch_json(BENCHMARKS_URL), load_catalog(root), fetch_json(PRICING_URL))
+    sources = json.loads((root / "catalog/sources.json").read_text(encoding="utf-8"))["sources"]
+    policy = next(source for source in sources if source["id"] == "benchlm")
+    if policy["source_status"] != "approved" or policy.get("redistribution") not in {"allowed", "allowed_with_attribution"}:
+        raise ValueError("BenchLM source policy does not permit fetching")
+    return normalize_payload(
+        fetch_json(MODELS_URL), fetch_json(BENCHMARKS_URL), load_catalog(root), fetch_json(PRICING_URL),
+        retrieved_date=datetime.now(UTC).date().isoformat(),
+    )

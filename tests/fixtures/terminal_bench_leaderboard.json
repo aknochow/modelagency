@@ -1,0 +1,68 @@
+{
+  "leaderboard": {
+    "name": "4-0-0",
+    "updated_at": "2026-09-08T12:00:00Z"
+  },
+  "rows": [
+    {
+      "id": "fixture-codex-luna-max",
+      "metadata": {
+        "agent_display": {
+          "label": "Codex",
+          "url": "https://example.invalid/agents/codex"
+        },
+        "model_display": {
+          "label": "GPT-5.6 Luna",
+          "url": "https://example.invalid/models/gpt-5-6-luna"
+        },
+        "agent_org": {
+          "label": "OpenAI",
+          "url": "https://openai.com"
+        },
+        "model_org": {
+          "label": "OpenAI",
+          "url": "https://openai.com"
+        },
+        "reasoning_effort": "max",
+        "date": "2026-06-26",
+        "display_date": "Jun 26, 2026"
+      },
+      "metrics": {
+        "accuracy": 12.3,
+        "n_trials": 330,
+        "total_tokens": 11600000000,
+        "total_cost_usd": 300.0
+      }
+    },
+    {
+      "id": "fixture-claude-opus-max",
+      "metadata": {
+        "agent_display": {
+          "label": "Claude Code",
+          "url": "https://example.invalid/agents/claude-code"
+        },
+        "model_display": {
+          "label": "Opus 5",
+          "url": "https://example.invalid/models/opus-5"
+        },
+        "agent_org": {
+          "label": "Anthropic",
+          "url": "https://anthropic.com"
+        },
+        "model_org": {
+          "label": "Anthropic",
+          "url": "https://anthropic.com"
+        },
+        "reasoning_effort": "max",
+        "date": "2026-07-24",
+        "display_date": "Jul 24, 2026"
+      },
+      "metrics": {
+        "accuracy": 45.6,
+        "n_trials": 330,
+        "total_tokens": 6500000000,
+        "total_cost_usd": 6000.0
+      }
+    }
+  ]
+}

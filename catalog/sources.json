@@ -7,11 +7,15 @@
       "kind": "aggregator",
       "canonical_url": "https://benchlm.ai/llm-agent-benchmarks",
       "data_url": "https://benchlm.ai/data/models.json",
+      "leaderboard_url": "https://benchlm.ai/data/leaderboard.json",
+      "terms_url": "https://benchlm.ai/terms",
+      "role": "canonical_leaderboard_and_evidence",
+      "terms_reviewed_date": "2026-09-10",
       "license_url": "https://benchlm.ai/data",
       "license": "MIT",
       "source_status": "approved",
       "redistribution": "allowed_with_attribution",
-      "attribution": "Source: BenchLM.ai (https://benchlm.ai), retrieved {retrieved_date}.",
+      "attribution": "Benchmark data and leaderboard rankings from BenchLM.ai, retrieved {retrieved_date}. BenchLM dataset licensed under MIT. Underlying benchmark results remain attributed to their original publishers.",
       "original_source_attribution_required": true,
       "notes": "Underlying benchmark results remain owned by their original publishers; preserve evidence URLs and attribution."
     },
@@ -27,6 +31,21 @@
       "redistribution": "link_only_until_confirmed",
       "attribution": "DeepSWE by Datacurve: https://deepswe.datacurve.ai/.",
       "notes": "Do not mirror leaderboard rows or benchmark data until Datacurve confirms redistribution terms."
+    },
+    {
+      "id": "terminal_bench",
+      "name": "Harbor Terminal-Bench",
+      "kind": "benchmark_leaderboard",
+      "canonical_url": "https://github.com/harbor-framework/terminal-bench",
+      "data_url": "https://hub.harborframework.com/datasets/terminal-bench/terminal-bench/latest?tab=leaderboard&leaderboard=4-0-0",
+      "license_url": "https://github.com/harbor-framework/terminal-bench/blob/main/LICENSE",
+      "license": "Apache-2.0",
+      "source_status": "approved",
+      "redistribution": "allowed_with_attribution",
+      "attribution": "Source: Harbor Terminal-Bench leaderboard (https://hub.harborframework.com/datasets/terminal-bench/terminal-bench/latest?tab=leaderboard&leaderboard=4-0-0), retrieved {retrieved_date}; benchmark: Terminal-Bench contributors (https://github.com/harbor-framework/terminal-bench).",
+      "original_source_attribution_required": true,
+      "data_scope": "aggregate_leaderboard_results_only",
+      "notes": "The adapter imports aggregate accuracy, effort, and resource totals only. Do not redistribute task prompts, solutions, trajectories, artifacts, or benchmark-canary text. Task-level third-party notices remain outside this aggregate import."
     },
     {
       "id": "artificialanalysis_models",
@@ -53,6 +72,20 @@
       "redistribution": "prohibited_without_written_consent",
       "attribution": "Source: Artificial Analysis (https://artificialanalysis.ai).",
       "notes": "Reference point only until written permission is obtained."
+    },
+    {
+      "id": "modelagency_derived",
+      "name": "modelagency derived indexes",
+      "kind": "derived",
+      "canonical_url": "https://github.com/aknochow/modelagency",
+      "data_url": null,
+      "license_url": "https://github.com/aknochow/modelagency/blob/main/LICENSE",
+      "license": "MIT",
+      "source_status": "approved",
+      "redistribution": "allowed_with_attribution",
+      "attribution": "Derived by modelagency from the linked benchmark records.",
+      "original_source_attribution_required": true,
+      "notes": "Deterministic indexes are derived from the approved normalized records and retain their source links."
     }
   ]
 }

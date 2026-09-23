@@ -1,0 +1,27 @@
+{
+  "agents": [
+    "model-level"
+  ],
+  "category": "",
+  "direction": "desc",
+  "models": [
+    "claude-opus-4-8",
+    "claude-opus-5",
+    "claude-sonnet-5",
+    "gpt-5-6-luna",
+    "gpt-5-6-sol",
+    "gpt-5-6-terra",
+    "gpt-6-astra",
+    "gemini-3-6-flash",
+    "grok-4-6",
+    "composer-2-5",
+    "gemini-3-1-pro"
+  ],
+  "monthly_budget_usd": 300,
+  "monthly_input_tokens": 20000000,
+  "monthly_output_tokens": 5000000,
+  "priced_only": false,
+  "search": "",
+  "sort": "benchlm_agentic",
+  "version": 1
+}

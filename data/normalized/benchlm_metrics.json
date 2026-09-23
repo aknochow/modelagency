@@ -1,0 +1,216 @@
+{
+  "schema_version": "1",
+  "source_id": "benchlm",
+  "source_url": "https://benchlm.ai/",
+  "agentic_url": "https://benchlm.ai/llm-agent-benchmarks",
+  "source_license_url": "https://benchlm.ai/data",
+  "source_verified_date": "2026-09-10",
+  "retrieved_date": "2026-09-11",
+  "attribution": "Source: BenchLM.ai (https://benchlm.ai), retrieved 2026-09-11; leaderboard and benchmark values remain attributed to BenchLM.ai and the original benchmark publishers.",
+  "records": [
+    {
+      "model_id": "gpt-5-6-sol",
+      "model_name": "GPT-5.6 Sol",
+      "provider": "OpenAI",
+      "profile_url": "https://benchlm.ai/models/gpt-5-6-sol",
+      "agentic_rank": 1,
+      "agentic_score": 92.0,
+      "agentic_status": "verified",
+      "overall_rank": 5,
+      "overall_score": 80.63,
+      "overall_status": "supported",
+      "benchmarks": {
+        "terminal_bench_2": {"score": 91.9, "evidence_url": "https://benchlm.ai/benchmarks/terminal-bench-2"},
+        "browsecomp": {"score": 92.2, "evidence_url": "https://benchlm.ai/benchmarks/browsecomp"},
+        "osworld_verified": {"score": null, "evidence_url": "https://benchlm.ai/benchmarks/osworld-verified"}
+      }
+    },
+    {
+      "model_id": "gpt-6-astra",
+      "model_name": "GPT-6 Astra",
+      "provider": "OpenAI",
+      "profile_url": "https://benchlm.ai/models/gpt-6-astra",
+      "agentic_rank": 2,
+      "agentic_score": 91.5,
+      "agentic_status": "verified",
+      "overall_rank": 2,
+      "overall_score": 84.08,
+      "overall_status": "estimated",
+      "benchmarks": {
+        "terminal_bench_2": {"score": null, "evidence_url": "https://benchlm.ai/benchmarks/terminal-bench-2"},
+        "browsecomp": {"score": 91.5, "evidence_url": "https://benchlm.ai/benchmarks/browsecomp"},
+        "osworld_verified": {"score": null, "evidence_url": "https://benchlm.ai/benchmarks/osworld-verified"}
+      }
+    },
+    {
+      "model_id": "claude-opus-5",
+      "model_name": "Claude Opus 5",
+      "provider": "Anthropic",
+      "profile_url": "https://benchlm.ai/models/claude-opus-5",
+      "agentic_rank": 3,
+      "agentic_score": 90.8,
+      "agentic_status": "verified",
+      "overall_rank": 3,
+      "overall_score": 81.97,
+      "overall_status": "supported",
+      "benchmarks": {
+        "terminal_bench_2": {"score": null, "evidence_url": "https://benchlm.ai/benchmarks/terminal-bench-2"},
+        "browsecomp": {"score": 90.8, "evidence_url": "https://benchlm.ai/benchmarks/browsecomp"},
+        "osworld_verified": {"score": null, "evidence_url": "https://benchlm.ai/benchmarks/osworld-verified"}
+      }
+    },
+    {
+      "model_id": "claude-fable-5",
+      "model_name": "Claude Fable 5",
+      "provider": "Anthropic",
+      "profile_url": "https://benchlm.ai/models/claude-fable-5",
+      "agentic_rank": 11,
+      "agentic_score": 84.6,
+      "agentic_status": "verified",
+      "overall_rank": 4,
+      "overall_score": 81.43,
+      "overall_status": "supported",
+      "benchmarks": {
+        "terminal_bench_2": {"score": 84.3, "evidence_url": "https://benchlm.ai/benchmarks/terminal-bench-2"},
+        "browsecomp": {"score": null, "evidence_url": "https://benchlm.ai/benchmarks/browsecomp"},
+        "osworld_verified": {"score": 85.0, "evidence_url": "https://benchlm.ai/benchmarks/osworld-verified"}
+      }
+    },
+    {
+      "model_id": "claude-mythos-5",
+      "model_name": "Claude Mythos 5",
+      "provider": "Anthropic",
+      "profile_url": "https://benchlm.ai/models/claude-mythos-5",
+      "agentic_rank": 8,
+      "agentic_score": 87.1,
+      "agentic_status": "verified",
+      "overall_rank": null,
+      "overall_score": null,
+      "overall_status": null,
+      "benchmarks": {
+        "terminal_bench_2": {"score": 88.0, "evidence_url": "https://benchlm.ai/benchmarks/terminal-bench-2"},
+        "browsecomp": {"score": 88.0, "evidence_url": "https://benchlm.ai/benchmarks/browsecomp"},
+        "osworld_verified": {"score": 85.0, "evidence_url": "https://benchlm.ai/benchmarks/osworld-verified"}
+      }
+    },
+    {
+      "model_id": "gpt-5-6-terra",
+      "model_name": "GPT-5.6 Terra",
+      "provider": "OpenAI",
+      "profile_url": "https://benchlm.ai/models/gpt-5-6-terra",
+      "agentic_rank": 7,
+      "agentic_score": 87.4,
+      "agentic_status": "verified",
+      "overall_rank": 11,
+      "overall_score": 71.13,
+      "overall_status": "estimated",
+      "benchmarks": {
+        "terminal_bench_2": {"score": 87.4, "evidence_url": "https://benchlm.ai/benchmarks/terminal-bench-2"},
+        "browsecomp": {"score": 87.5, "evidence_url": "https://benchlm.ai/benchmarks/browsecomp"},
+        "osworld_verified": {"score": null, "evidence_url": "https://benchlm.ai/benchmarks/osworld-verified"}
+      }
+    },
+    {
+      "model_id": "gpt-5-6-luna",
+      "model_name": "GPT-5.6 Luna",
+      "provider": "OpenAI",
+      "profile_url": "https://benchlm.ai/models/gpt-5-6-luna",
+      "agentic_rank": 13,
+      "agentic_score": 84.1,
+      "agentic_status": "verified",
+      "overall_rank": 38,
+      "overall_score": 64.65,
+      "overall_status": "estimated",
+      "benchmarks": {
+        "terminal_bench_2": {"score": 84.7, "evidence_url": "https://benchlm.ai/benchmarks/terminal-bench-2"},
+        "browsecomp": {"score": 83.3, "evidence_url": "https://benchlm.ai/benchmarks/browsecomp"},
+        "osworld_verified": {"score": null, "evidence_url": "https://benchlm.ai/benchmarks/osworld-verified"}
+      }
+    },
+    {
+      "model_id": "gemini-3-6-flash",
+      "model_name": "Gemini 3.6 Flash",
+      "provider": "Google",
+      "profile_url": "https://benchlm.ai/models/gemini-3-6-flash",
+      "agentic_rank": 16,
+      "agentic_score": 83.0,
+      "agentic_status": "verified",
+      "overall_rank": 23,
+      "overall_score": 68.39,
+      "overall_status": "supported",
+      "benchmarks": {
+        "terminal_bench_2": {"score": null, "evidence_url": "https://benchlm.ai/benchmarks/terminal-bench-2"},
+        "browsecomp": {"score": null, "evidence_url": "https://benchlm.ai/benchmarks/browsecomp"},
+        "osworld_verified": {"score": 83.0, "evidence_url": "https://benchlm.ai/benchmarks/osworld-verified"}
+      }
+    },
+    {
+      "model_id": "claude-sonnet-5",
+      "model_name": "Claude Sonnet 5",
+      "provider": "Anthropic",
+      "profile_url": "https://benchlm.ai/models/claude-sonnet-5",
+      "agentic_rank": 19,
+      "agentic_score": 82.0,
+      "agentic_status": "verified",
+      "overall_rank": 18,
+      "overall_score": 69.84,
+      "overall_status": "supported",
+      "benchmarks": {
+        "terminal_bench_2": {"score": 80.4, "evidence_url": "https://benchlm.ai/benchmarks/terminal-bench-2"},
+        "browsecomp": {"score": 84.7, "evidence_url": "https://benchlm.ai/benchmarks/browsecomp"},
+        "osworld_verified": {"score": 81.2, "evidence_url": "https://benchlm.ai/benchmarks/osworld-verified"}
+      }
+    },
+    {
+      "model_id": "claude-opus-4-8",
+      "model_name": "Claude Opus 4.8",
+      "provider": "Anthropic",
+      "profile_url": "https://benchlm.ai/models/claude-opus-4-8",
+      "agentic_rank": 23,
+      "agentic_score": 80.4,
+      "agentic_status": "verified",
+      "overall_rank": 8,
+      "overall_score": 72.22,
+      "overall_status": "supported",
+      "benchmarks": {
+        "terminal_bench_2": {"score": 74.6, "evidence_url": "https://benchlm.ai/benchmarks/terminal-bench-2"},
+        "browsecomp": {"score": 84.3, "evidence_url": "https://benchlm.ai/benchmarks/browsecomp"},
+        "osworld_verified": {"score": 83.4, "evidence_url": "https://benchlm.ai/benchmarks/osworld-verified"}
+      }
+    },
+    {
+      "model_id": "claude-opus-4-6",
+      "model_name": "Claude Opus 4.6",
+      "provider": "Anthropic",
+      "profile_url": "https://benchlm.ai/models/claude-opus-4-6",
+      "agentic_rank": null,
+      "agentic_score": null,
+      "agentic_status": null,
+      "overall_rank": null,
+      "overall_score": null,
+      "overall_status": null,
+      "benchmarks": {
+        "terminal_bench_2": {"score": null, "evidence_url": "https://benchlm.ai/benchmarks/terminal-bench-2"},
+        "browsecomp": {"score": 83.7, "evidence_url": "https://benchlm.ai/benchmarks/browsecomp"},
+        "osworld_verified": {"score": 72.7, "evidence_url": "https://benchlm.ai/benchmarks/osworld-verified"}
+      }
+    },
+    {
+      "model_id": "grok-4-6",
+      "model_name": "Grok 4.6",
+      "provider": "xAI",
+      "profile_url": "https://benchlm.ai/models/grok-4-6",
+      "agentic_rank": null,
+      "agentic_score": null,
+      "agentic_status": null,
+      "overall_rank": 16,
+      "overall_score": 70.08,
+      "overall_status": "supported",
+      "benchmarks": {
+        "terminal_bench_2": {"score": null, "evidence_url": "https://benchlm.ai/benchmarks/terminal-bench-2"},
+        "browsecomp": {"score": null, "evidence_url": "https://benchlm.ai/benchmarks/browsecomp"},
+        "osworld_verified": {"score": null, "evidence_url": "https://benchlm.ai/benchmarks/osworld-verified"}
+      }
+    }
+  ]
+}

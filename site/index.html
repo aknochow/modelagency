@@ -1,59 +1,155 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="pf-v6-theme-felt">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
   <title>modelagency</title>
-  <link rel="stylesheet" href="styles.css">
+  <script src="theme.js?v=20260911-23"></script>
+  <link rel="stylesheet" href="assets/css/patternfly-base.css">
+    <link rel="stylesheet" href="styles.css?v=20260921-55">
 </head>
 <body>
   <main>
-    <header>
-      <p class="eyebrow">Deterministic benchmark index</p>
-      <h1>modelagency</h1>
-      <p>Compare model and agent evidence by work type, cost, and provenance.</p>
+    <header class="site-header">
+      <div class="header-copy">
+        <p class="eyebrow">Find the right model for the work ahead.</p>
+        <h1>modelagency</h1>
+      </div>
+      <div class="header-meta">
+        <p id="snapshot-status" class="snapshot-status">Offline benchmark snapshot</p>
+        <label class="theme-control" for="theme-mode"><span>Theme</span><select id="theme-mode" aria-label="Color theme"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label>
+      </div>
     </header>
 
-    <section class="notice">
-      <strong>Source policy:</strong> every row links to its evidence and attribution.
-      Metrics from sources without redistribution permission remain link-only.
-    </section>
+    <section class="dashboard-shell">
+      <aside class="sidebar" aria-label="Saved view and filters">
+        <section class="budget-panel" aria-labelledby="budget-heading">
+          <div class="section-heading"><h2 id="budget-heading">Monthly Budget<sup class="footnote-ref"><a href="#note-budget" aria-label="Read budget estimate notes">1</a></sup></h2><label class="sr-only" for="monthly-budget-amount">Monthly API budget in US dollars</label><span class="budget-amount-control"><span aria-hidden="true">$</span><input id="monthly-budget-amount" class="budget-amount" type="number" min="0" max="5000" step="1" value="300" inputmode="numeric" aria-describedby="budget-status budget-amount-error"></span></div>
+          <label class="sr-only" for="monthly-budget">Monthly API budget in US dollars</label>
+          <input id="monthly-budget" type="range" min="0" max="5000" step="1" value="300" aria-describedby="budget-status">
+          <div class="budget-scale" aria-hidden="true"><span>$0</span><span>$5,000+</span></div>
+          <div class="budget-assumptions" id="usage-assumptions">
+            <h3>Expected Usage</h3>
+            <div class="usage-fields">
+              <label for="monthly-input-million">Input tokens / month (millions)</label>
+              <input id="monthly-input-million" type="number" min="0" max="1000" step="any" value="20">
+              <label for="monthly-output-million">Output tokens / month (millions)</label>
+              <input id="monthly-output-million" type="number" min="0" max="1000" step="any" value="5">
+            </div>
+          </div>
+          <p id="budget-amount-error" class="error" role="alert"></p>
+          <p id="budget-error" class="error" role="alert"></p>
+          <div class="budget-status-row"><p id="budget-status" class="budget-status" role="status" aria-live="polite"></p></div>
+        </section>
+        <section class="filter-panel" aria-labelledby="models-heading">
+          <div class="section-heading"><h2 id="models-heading">Models</h2></div>
+          <div id="model-filters"></div>
+          <div class="filter-footer">
+            <div class="filter-actions">
+              <button type="button" data-filter-action="all" data-filter-target="model-filters">Check all</button>
+              <button type="button" data-filter-action="none" data-filter-target="model-filters">Uncheck all</button>
+            </div>
+            <span id="model-count" class="filter-count" aria-live="polite">0 selected</span>
+          </div>
+        </section>
 
-    <section>
-      <h2>Suggested agent</h2>
-      <p class="muted">Recommendations are generated from the visible evidence only. Cost-based suggestions appear when task-cost data is available.</p>
-      <div id="suggestions" class="cards"></div>
-    </section>
+        <section class="view-config">
+          <div class="section-heading"><h2>YAML</h2><span class="muted">saved in this browser</span></div>
+          <textarea id="view-yaml" spellcheck="false" aria-label="View YAML"></textarea>
+          <div class="button-row">
+            <button id="apply-yaml" type="button">Apply YAML</button>
+            <button id="export-yaml" type="button">Export YAML</button>
+          </div>
+          <button id="reset-view" type="button">Reset demo defaults</button>
+          <p id="view-status" class="muted" role="status"></p>
+        </section>
+      </aside>
 
-    <section class="controls" aria-label="Filters">
-      <label>Search <input id="search" type="search" placeholder="model, provider, benchmark"></label>
-      <label>Category <select id="category"><option value="">All categories</option></select></label>
-      <label><input id="priced-only" type="checkbox"> priced only</label>
-      <fieldset><legend>Models</legend><div id="model-filters"></div></fieldset>
-      <fieldset><legend>Agents</legend><div id="agent-filters"></div></fieldset>
-    </section>
+      <div class="dashboard-content">
+        <section class="suggestions-section">
+          <div id="suggestions" class="recommendation-report"></div>
+        </section>
 
-    <section>
-      <p id="status">Loading…</p>
-      <div class="table-wrap">
-        <table>
-          <thead><tr>
-            <th><button data-sort="model_name">Model</button></th>
-            <th><button data-sort="provider">Provider</button></th>
-            <th><button data-sort="category">Category</button></th>
-            <th><button data-sort="benchmark_id">Benchmark</button></th>
-            <th><button data-sort="score">Score</button></th>
-            <th><button data-sort="cost_per_task_usd">Cost/task</button></th>
-            <th>Token price</th>
-            <th>Evidence / attribution</th>
-          </tr></thead>
-          <tbody id="results"></tbody>
-        </table>
+        <section class="results-panel">
+          <div class="comparison-toolbar">
+            <div class="comparison-toolbar-title">
+              <h2>Compare your models <span class="comparison-summary">(<span id="status" aria-live="polite">Loading…</span> | BenchLM + derived work scores<sup class="footnote-ref"><a href="#note-evidence" aria-label="Read score interpretation notes">3</a></sup>)</span></h2>
+            </div>
+            <div class="comparison-toolbar-controls" aria-label="Filters">
+              <input id="search" type="search" placeholder="Search model, provider, benchmark" aria-label="Search model, provider, benchmark">
+            </div>
+          </div>
+          <div class="table-wrap">
+              <table class="comparison-table">
+                <thead><tr>
+                  <th><button data-sort="model_name">Model</button></th>
+                  <th><button data-sort="provider">Provider</button></th>
+                  <th><button data-sort="benchlm_agentic" title="BenchLM verified agentic score / 100">BenchLM agentic</button></th>
+                  <th><button data-sort="terminal_bench_2" title="BenchLM Terminal-Bench 2.0 score">Terminal-Bench 2.0</button></th>
+                  <th><button data-sort="browsecomp" title="BenchLM BrowseComp score">BrowseComp</button></th>
+                  <th><button data-sort="osworld_verified" title="BenchLM OSWorld-Verified score">OSWorld-Verified</button></th>
+                  <th><button data-sort="benchlm_overall" title="BenchLM overall score / 100">BenchLM overall</button></th>
+                  <th data-domain-column="engineering"><button data-sort="engineering" title="Coding, Terminal, and CI/CD">Engineering</button></th>
+                  <th data-domain-column="management"><button data-sort="management" title="Administrative, Office, and Computer Use">Management</button></th>
+                  <th data-domain-column="media"><button data-sort="media" title="Graphics, Visual Reasoning, and Writing">Media</button></th>
+                  <th><button data-sort="daily_driver" title="Normalized daily-driver index / 100">Daily driver</button></th>
+                  <th><button data-sort="monthly_cost" title="Estimated monthly API cost for your usage assumptions">Est. / month</button></th>
+                  <th>Evidence / attribution / credit</th>
+                </tr></thead>
+                <tbody id="results"></tbody>
+              </table>
+            </div>
+        </section>
+
+        <section class="canonical-panel" aria-labelledby="canonical-heading">
+          <div class="section-heading canonical-header"><div><h2 id="canonical-heading">BenchLM published metrics<sup class="footnote-ref"><a href="#note-sources" aria-label="Read source policy and methodology">2</a></sup></h2><p class="source-heading"><a href="https://benchlm.ai/llm-agent-benchmarks" target="_blank" rel="noreferrer">BenchLM.ai ↗</a><span class="pill">Canonical leaderboard &amp; evidence</span></p></div></div>
+          <p id="source-attribution" class="muted">Benchmark data from BenchLM.ai. See the dataset retrieval dates in the evidence details.</p>
+          <p class="muted">Source-owned scores and benchmark values. These replace the old local percentile values for cross-model comparison; missing cells remain blank.</p>
+          <div id="benchlm-metrics" role="status"></div>
+          <details class="canonical-details"><summary>Published ranking lanes</summary>
+          <label id="ranking-lane-control" hidden>Ranking lane <select id="ranking-lane"><option value="provisional">Provisional</option><option value="verified">Verified</option></select></label>
+          <div id="canonical-results" role="status"></div>
+          </details>
+        </section>
       </div>
     </section>
 
-    <footer><a href="sources.html">Sources and attribution</a></footer>
+    <section class="notes-panel" aria-labelledby="notes-heading">
+      <div class="section-heading"><h2 id="notes-heading">Sources, Notes, and Assumptions</h2><span class="muted">How estimates and recommendations are calculated</span></div>
+      <div class="notes-grid">
+        <article class="note" id="note-sources">
+          <h3>Sources &amp; credit</h3>
+          <p>BenchLM is the canonical leaderboard and evidence layer; original publishers retain attribution for benchmark results.</p>
+          <p class="source-policy-copy">BenchLM owns its published leaderboard ranks, scores, and verification lanes. modelagency derives the work-category, Daily Driver, and value recommendations shown here. <a href="https://benchlm.ai/data" target="_blank" rel="noreferrer">Dataset license</a> · <a href="sources.html">Sources and credits</a>. Sources without redistribution permission remain link-only. modelagency is independent and is not affiliated with or endorsed by BenchLM.</p>
+          <p class="presentation-credit">Presentation layer: <a href="https://www.patternfly.org/" target="_blank" rel="noreferrer">PatternFly v6</a> with the <a href="https://www.patternfly.org/design-foundations/theming/" target="_blank" rel="noreferrer">Project Felt theme</a>; foundation CSS is Apache-2.0 licensed. <a href="https://github.com/patternfly/patternfly/blob/main/LICENSE" target="_blank" rel="noreferrer">License ↗</a></p>
+          <a class="note-backlink" href="sources.html">Full attribution &amp; credit ↗</a>
+        </article>
+        <article class="note" id="note-evidence">
+          <h3>Evidence &amp; scoring</h3>
+          <h4>How to read these scores</h4>
+          <p>BenchLM columns are source-owned values and link to their evidence. Overall is BenchLM’s published overall score; Agentic and the three core benchmark columns are separate, not interchangeable. Quality cards rank the selected source scores even when the winner is over budget, while Best Value, Daily Driver Fit, and the workload mix stay budget-aware; over-budget quality winners are labeled explicitly. Score ranges show observed configurations only, with no effort interpolation. Monthly API estimates use your input and output token assumptions. The comparison table keeps all selected models visible.</p>
+          <p>BenchLM publishes the canonical benchmark values. modelagency derives work categories, Daily Driver, and value recommendations from those values when available.</p>
+          <a class="note-backlink" href="#canonical-heading">View published metrics ↑</a>
+        </article>
+        <article class="note" id="note-budget">
+          <h3>Budget estimates</h3>
+          <p>Estimated API spend per model uses the current input and output token prices. A <strong>$5,000+</strong> budget removes the cap; estimates exclude subscriptions, caching discounts, tools, and taxes. Recommendations assume each model handles the full expected workload.</p>
+          <a class="note-backlink" href="#budget-heading">Back to Monthly Budget ↑</a>
+        </article>
+        <article class="note" id="note-pricing">
+          <h3>Token pricing</h3>
+          <div id="pricing-section" role="status"></div>
+        </article>
+      </div>
+    </section>
+
   </main>
-  <script src="app.js"></script>
+  <footer class="site-footer" data-site-footer aria-label="Site version">
+    <span>modelagency <strong data-site-version>v.alpha</strong></span>
+    <span>Build <time data-site-build-date datetime="2026-09-14">2026-09-14</time></span>
+  </footer>
+  <script src="app.js?v=20260921-47"></script>
+  <script src="footer.js?v=20260914-1"></script>
 </body>
 </html>

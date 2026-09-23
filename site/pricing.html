@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" class="pf-v6-theme-felt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>Token pricing · modelagency</title>
+  <script src="theme.js?v=20260911-23"></script>
+  <link rel="stylesheet" href="assets/css/patternfly-base.css">
+  <link rel="stylesheet" href="styles.css?v=20260921-54">
+</head>
+<body>
+  <main>
+    <a class="page-backlink" href="index.html">← dashboard</a>
+    <header class="site-header pricing-page-header">
+      <div class="header-copy">
+        <p class="eyebrow">Modelagency reference</p>
+        <h1>Token pricing</h1>
+        <p>Input and output prices used for monthly API estimates.</p>
+      </div>
+      <div class="header-meta">
+        <p class="snapshot-status">Snapshot reference</p>
+      </div>
+    </header>
+    <section class="pricing-page-panel" aria-labelledby="pricing-overview">
+      <div class="section-heading">
+        <h2 id="pricing-overview">Full token pricing list</h2>
+        <span class="muted">Per 1M tokens</span>
+      </div>
+      <p id="pricing-attribution" class="muted">Loading pricing snapshot…</p>
+      <div id="pricing-page" role="status"></div>
+    </section>
+  </main>
+  <footer class="site-footer" data-site-footer aria-label="Site version">
+    <span>modelagency <strong data-site-version>v.alpha</strong></span>
+    <span>Build <time data-site-build-date datetime="2026-09-14">2026-09-14</time></span>
+  </footer>
+  <script src="pricing.js?v=20260911-3"></script>
+  <script src="footer.js?v=20260914-1"></script>
+</body>
+</html>

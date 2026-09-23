@@ -1,0 +1,23 @@
+version: 1
+models:
+  - claude-opus-4-8
+  - claude-opus-5
+  - claude-sonnet-5
+  - gpt-5-6-luna
+  - gpt-5-6-sol
+  - gpt-5-6-terra
+  - gpt-6-astra
+  - gemini-3-6-flash
+  - grok-4-6
+  - composer-2-5
+  - gemini-3-1-pro
+agents:
+  - model-level
+search: ""
+category: ""
+priced_only: false
+sort: benchlm_agentic
+direction: desc
+monthly_budget_usd: 300
+monthly_input_tokens: 20000000
+monthly_output_tokens: 5000000

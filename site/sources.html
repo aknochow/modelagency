@@ -1,11 +1,17 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sources · modelagency</title><link rel="stylesheet" href="styles.css"></head>
-<body><main><a href="index.html">← dashboard</a><h1>Sources and attribution</h1>
-<p>modelagency publishes only records whose source policy allows the displayed use. Each result links to its evidence record and carries the source attribution supplied by the catalog.</p>
+<html lang="en" class="pf-v6-theme-felt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark light"><title>Sources · modelagency</title><script src="theme.js?v=20260911-23"></script><link rel="stylesheet" href="assets/css/patternfly-base.css"><link rel="stylesheet" href="styles.css?v=20260921-54"></head>
+<body><main><a href="index.html">← dashboard</a><h1>Sources and attribution / credit</h1>
+<p>modelagency publishes only records whose source policy allows the displayed use. Each result links to its evidence record and carries the source attribution / credit supplied by the catalog.</p>
 <h2>Reference-only sources</h2>
 <p><a href="https://artificialanalysis.ai/models">Artificial Analysis Models</a> and <a href="https://artificialanalysis.ai/agents/coding-agents">Artificial Analysis Coding Agents</a> are reference points only until written permission is obtained. We do not mirror their data.</p>
-<h2>Approved initial source</h2>
-<p><a href="https://benchlm.ai/llm-agent-benchmarks">BenchLM.ai</a> publishes its dataset under MIT terms and requests attribution: “Source: BenchLM.ai (https://benchlm.ai), retrieved [date].” Original benchmark publishers remain credited at the evidence URL.</p>
+<h2>Approved sources</h2>
+<p><a href="https://benchlm.ai/llm-agent-benchmarks">BenchLM.ai</a> is the canonical leaderboard and evidence layer.</p>
+<p id="source-attribution">Benchmark data and leaderboard rankings from BenchLM.ai, retrieved 2026-09-11. BenchLM dataset licensed under MIT. Underlying benchmark results remain attributed to their original publishers.</p>
+<p><a href="https://benchlm.ai/data">Dataset and license</a> · <a href="https://benchlm.ai/terms">Terms</a>. The dashboard’s BenchLM metrics snapshot preserves source-owned agentic, overall, and core benchmark values; matching quality cards use those exact values, while unmatched domains and value views retain modelagency-derived fallbacks. modelagency is independent and is not affiliated with or endorsed by BenchLM.</p>
+<p><a href="pricing.html">Token pricing list</a> contains the full input/output price snapshot used by dashboard estimates, with provider sources and check dates.</p>
+<p><a href="https://hub.harborframework.com/datasets/terminal-bench/terminal-bench/latest?tab=leaderboard&amp;leaderboard=4-0-0">Harbor Terminal-Bench 4.0</a> provides aggregate accuracy, effort, and resource totals under the benchmark repository's <a href="https://github.com/harbor-framework/terminal-bench/blob/main/LICENSE">Apache-2.0 license</a>. modelagency imports aggregate leaderboard rows only and does not redistribute task content, solutions, trajectories, or raw evaluation artifacts.</p>
 <h2>Permission pending</h2>
 <p><a href="https://deepswe.datacurve.ai/">DeepSWE by Datacurve</a> is link-only until redistribution terms are confirmed. No leaderboard rows or benchmark artifacts are mirrored by this prototype.</p>
-</main></body></html>
+<h2>Presentation assets</h2>
+<p>The presentation layer uses <a href="https://www.patternfly.org/" target="_blank" rel="noreferrer">PatternFly v6</a> with its <a href="https://www.patternfly.org/design-foundations/theming/" target="_blank" rel="noreferrer">Project Felt theme</a>. The vendored foundation stylesheet is Apache-2.0 licensed; see the repository's <a href="../THIRD_PARTY_NOTICES.md">third-party notices</a> and the <a href="https://github.com/patternfly/patternfly/blob/main/LICENSE" target="_blank" rel="noreferrer">PatternFly license ↗</a>.</p>
+</main><footer class="site-footer" data-site-footer aria-label="Site version"><span>modelagency <strong data-site-version>v.alpha</strong></span><span>Build <time data-site-build-date datetime="2026-09-14">2026-09-14</time></span></footer><script src="sources.js?v=20260910-19"></script><script src="footer.js?v=20260914-1"></script></body></html>

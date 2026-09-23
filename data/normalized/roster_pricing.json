@@ -1,0 +1,34 @@
+{
+  "schema_version": "1",
+  "source_id": "benchlm",
+  "source_url": "https://benchlm.ai/data/models.json",
+  "source_license_url": "https://benchlm.ai/data",
+  "retrieved_date": "2026-09-11",
+  "attribution": "Source: BenchLM.ai model profiles (https://benchlm.ai/data), retrieved 2026-09-11; prices remain attributed to the model providers and BenchLM.ai.",
+  "records": [
+    {
+      "model_id": "composer-2-5",
+      "model_name": "Composer 2.5 (Cursor)",
+      "provider": "Cursor",
+      "profile_url": "https://benchlm.ai/models/composer-2-5",
+      "pricing_source_url": "https://benchlm.ai/models/composer-2-5",
+      "pricing_variant": "standard",
+      "input_price_per_million_usd": 0.5,
+      "output_price_per_million_usd": 2.5,
+      "retrieved_date": "2026-09-11",
+      "notes": "Cursor also lists a fast variant at $3 input / $15 output per 1M tokens."
+    },
+    {
+      "model_id": "gemini-3-1-pro",
+      "model_name": "Gemini 3.1 Pro",
+      "provider": "Google",
+      "profile_url": "https://benchlm.ai/models/gemini-3-1-pro",
+      "pricing_source_url": "https://benchlm.ai/models/gemini-3-1-pro",
+      "pricing_variant": "standard; prompts up to 200K",
+      "input_price_per_million_usd": 2,
+      "output_price_per_million_usd": 12,
+      "retrieved_date": "2026-09-11",
+      "notes": "Google lists $4 input / $18 output per 1M tokens for prompts over 200K."
+    }
+  ]
+}
