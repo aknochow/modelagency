@@ -38,4 +38,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         if: ${{ vars.ENABLE_PAGES == 'true' }}
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
