@@ -172,16 +172,18 @@ node -e "import('./tests/test_dashboard_budget.mjs').then(tests => console.log(t
 ```
 
 `build` is offline by default and uses the checked-in normalized fixture. The
-GitHub Pages workflow also builds from those checked-in snapshots only; run a
+GitHub Actions workflow also builds from those checked-in snapshots only; run a
 source refresh explicitly, review the diff, and commit the updated snapshot
-before publishing it.
+before publishing it. Pages deployment is disabled unless the repository
+variable `ENABLE_PAGES` is explicitly set to `true`.
 
 ## Planned deployment
 
 The generated `site/` directory is suitable for GitHub Pages or GitLab Pages.
-The GitHub Pages workflow publishes the checked-in artifact without source
-network access or secrets. The weekly report is Markdown first; Slack posting
-remains an explicit local command when a webhook is configured.
+The GitHub Actions workflow builds the checked-in artifact without source
+network access or secrets; Pages deployment is an explicit opt-in. The weekly
+report is Markdown first; Slack posting remains an explicit local command when
+a webhook is configured.
 
 See [`docs/SOURCES.md`](docs/SOURCES.md) for the source-by-source rights and
 attribution policy.

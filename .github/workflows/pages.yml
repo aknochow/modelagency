@@ -1,4 +1,4 @@
-name: Build and publish modelagency
+name: Build modelagency (optional Pages deploy)
 
 on:
   push:
@@ -37,4 +37,5 @@ jobs:
           path: site
       - name: Deploy to GitHub Pages
         id: deployment
+        if: ${{ vars.ENABLE_PAGES == 'true' }}
         uses: actions/deploy-pages@v4

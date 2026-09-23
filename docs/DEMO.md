@@ -41,7 +41,7 @@ Pages site with repository-reader access requires GitHub Enterprise Cloud;
 making only the repository private on a Free plan is not sufficient.
 
 If the project stays on GitHub, configure Pages from **Settings > Pages** and
-publish the `site/` directory through the checked-in GitHub Actions workflow
-after confirming the organization plan and intended site visibility. That
-workflow validates and builds the checked-in snapshots; it does not fetch
-upstream data or require repository secrets.
+confirm the organization plan and intended site visibility. The checked-in
+GitHub Actions workflow validates and builds the checked-in snapshots without
+fetching upstream data or requiring repository secrets. To opt into deployment,
+set the repository variable `ENABLE_PAGES` to `true` after Pages is configured.
