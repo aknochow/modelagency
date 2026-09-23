@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -39,5 +42,5 @@ jobs:
           path: site
       - name: Deploy to GitHub Pages
         id: deployment
-        if: ${{ vars.ENABLE_PAGES == 'true' }}
+        if: ${{ vars.ENABLE_PAGES == 'true' && github.event_name != 'pull_request' }}
         uses: actions/deploy-pages@v5
