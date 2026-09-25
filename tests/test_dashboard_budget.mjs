@@ -171,7 +171,7 @@ export function runBudgetTests() {
     assert.match(sol, /20M input × \$5\/1M \+ 5M output × \$30\/1M = \$250\/month/);
     assert.match(page.element("#pricing-section").innerHTML, /Cost calculation/);
     assert.match(page.element("#pricing-section").innerHTML, /20M input and 5M output tokens per month/);
-    assert.match(page.element("#pricing-section").innerHTML, /not a subscription price or measured task cost/);
+    assert.match(page.element("#pricing-section").innerHTML, /not subscription prices or measured task costs/);
     assert.match(page.element("#pricing-section").innerHTML, /View full token pricing list/);
     assert.match(page.element("#pricing-section").innerHTML, /pricing\.html#pricing-overview/);
     assert.match(page.element("#pricing-section").innerHTML, /composer-2-5/);
