@@ -620,8 +620,7 @@ function monthlyCalculation(row) {
   const inputMillions = view.monthly_input_tokens / 1000000;
   const outputMillions = view.monthly_output_tokens / 1000000;
   const formula = `${inputMillions.toLocaleString("en-US", {maximumFractionDigits: 6})}M input × ${formatDollars(row.input_price_per_million_usd)}/1M + ${outputMillions.toLocaleString("en-US", {maximumFractionDigits: 6})}M output × ${formatDollars(row.output_price_per_million_usd)}/1M = ${formatDollars(cost)}/month`;
-  const source = row.pricing_source_url ? `<a href="${safeHref(row.pricing_source_url)}" target="_blank" rel="noreferrer">Snapshot token prices ↗</a>` : "Snapshot token prices";
-  return `<details class="cost-calculation"><summary>Cost calculation</summary><p>${pricingLink(row, formula)}</p><p>Assumed API usage, not a subscription price or measured task cost. ${source}</p></details>`;
+  return `<a class="cost-calculation-link" href="#cost-calculation-heading" aria-label="View cost calculation: ${escapeHtml(formula)}">Cost calculation ↓</a>`;
 }
 
 function bestMonthlyValue(rows, scoreFor) {
@@ -1000,6 +999,9 @@ function renderPricingNotes() {
   const container = document.querySelector("#pricing-section");
   if (!container) return;
   const checkedDate = escapeHtml(pricingCheckedDate());
+  const view = state.view || DEFAULT_VIEW;
+  const inputMillions = (view.monthly_input_tokens / 1000000).toLocaleString("en-US", {maximumFractionDigits: 6});
+  const outputMillions = (view.monthly_output_tokens / 1000000).toLocaleString("en-US", {maximumFractionDigits: 6});
   const sources = [...new Set([
     ...state.summaries.map((row) => row.pricing_source_url),
     ...(state.rosterPricing.records || []).map((row) => row.pricing_source_url)
@@ -1007,7 +1009,7 @@ function renderPricingNotes() {
   const sourceLinks = sources.length
     ? sources.map((sourceUrl) => `<a href="${safeHref(sourceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(sourceUrl)} ↗</a>`).join(" · ")
     : "Unavailable in this snapshot";
-  container.innerHTML = `<p class="pricing-summary">Token prices used for estimates are snapshot input and output prices per 1M tokens. Primary pricing source(s), checked ${checkedDate}: ${sourceLinks}.</p><a class="note-backlink" href="pricing.html#pricing-overview">View full token pricing list ↗</a>`;
+  container.innerHTML = `<h4 id="cost-calculation-heading">Cost calculation</h4><p class="pricing-summary">Estimates use ${escapeHtml(inputMillions)}M input and ${escapeHtml(outputMillions)}M output tokens per month. Each model's estimate is input tokens × its input price plus output tokens × its output price. These are API usage estimates, not subscription prices or measured task costs.</p><p class="pricing-summary">Token prices are snapshot input and output prices per 1M tokens. Primary pricing source(s), checked ${checkedDate}: ${sourceLinks}.</p><a class="note-backlink" href="pricing.html#pricing-overview">View full token pricing list ↗</a>`;
 }
 
 function render() {
